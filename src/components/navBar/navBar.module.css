@@ -1,0 +1,49 @@
+.navbar {
+    font-family:"American Typewriter";
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    justify-content:space-between;
+    align-items: center;
+    padding: 15px 100px;
+    background-color: black;
+}
+
+.navLinks {
+    margin-left: auto;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.navLink {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.activeLink {
+    text-decoration: none;
+    color: #d0b8ac;
+}
+
+.navLink:hover {
+    transition: all 0.2s ease-in;
+    color: #d0b8ac;
+    text-shadow: 0 0 0 1px #d0b8ac;
+}
+
+
+.navLogo {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.navImg {
+    width: 98px;
+    height: 80px;
+    content: '';
+}

@@ -1,0 +1,19 @@
+.card__stars {
+    display: inline-block;
+    font-size: 0;
+}
+
+.card__star {
+    padding: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: lightgray;
+}
+
+.active {
+    color: gold;
+}
+
+.card__star::before{
+    content: '★';
+}
