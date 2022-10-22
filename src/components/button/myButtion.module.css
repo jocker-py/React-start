@@ -11,12 +11,21 @@
     box-sizing: border-box;
     font-weight: 500;
     cursor: pointer;
+    font-family: 'American Typewriter', sans-serif;
+    letter-spacing: 0.05cm;
 }
 
 .myButton:hover {
+    cursor: pointer;
     border: 2px solid black;
     background: #fff;
     color: black;
     transition: all .5s ease;
+}
+
+.myButton:disabled {
+    border: 2px solid darkgray;
+    background-color: gray;
+    color: darkgray;
 }
 
