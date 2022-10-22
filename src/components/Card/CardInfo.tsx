@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import cl from './CardItem.module.css';
-import getTitle from './UI/helper/helpers';
-import CardStars from './CardStars';
-import { ICardItem } from '../config/interfaces';
 import { Link } from 'react-router-dom';
+import { getTitle } from '../UI/helper/helpers';
+import { ICardItem } from '../../config/interfaces';
+import CardStars from './CardStars';
 
 const CardInfo: FC<ICardItem> = ({ card }: ICardItem) => {
   return (

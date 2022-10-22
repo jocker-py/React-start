@@ -46,9 +46,13 @@
     justify-content:center;
     gap: 5px;
     padding: 10px;
+    font-family: 'American Typewriter', sans-serif;
+    letter-spacing: 0.03cm;
 }
 
 .card__title {
+    font-family: 'American Typewriter', sans-serif;
+    letter-spacing: 0.03cm;
     text-decoration: none;
     text-align: center;
 }

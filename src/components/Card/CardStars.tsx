@@ -9,7 +9,7 @@ const CardStars: FC<ICardStars> = ({ rate }) => {
       {stars.map((star) => (
         <span
           key={star}
-          className={star <= rate ? cl.card__star + ' ' + cl.active : cl.card__star}
+          className={star < rate ? cl.card__star + ' ' + cl.active : cl.card__star}
         />
       ))}
     </div>
