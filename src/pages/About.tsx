@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
 
-const titleStyles: React.CSSProperties = { textAlign: 'center', fontFamily: 'American Typewriter' };
+const titleStyles: React.CSSProperties = {
+  textAlign: 'center',
+  fontFamily: 'American Typewriter',
+  letterSpacing: '0.05cm',
+};
 
 const About: FC = () => {
   return (

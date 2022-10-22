@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const Home = () => {
-  return <div>Welcome to my first app on React</div>;
+const titleStyles: React.CSSProperties = {
+  textAlign: 'center',
+  fontFamily: 'American Typewriter',
+  letterSpacing: '0.05cm',
+};
+
+const Home: FC = () => {
+  return <h1 style={titleStyles}>Welcome to my first app on React</h1>;
 };
 
 export default Home;
