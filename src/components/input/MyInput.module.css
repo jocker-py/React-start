@@ -1,0 +1,44 @@
+.input__box {
+   width: 100%;
+   display: grid;
+   grid-template-areas: "title input input" ". notice notice";
+   grid-template-rows: 25px 10px;
+   grid-template-columns: repeat(3, 1fr);
+   justify-content: center;
+   align-items: center;
+   padding: 0 10px;
+   column-gap: 5px;
+}
+
+.input__title {
+   font-family: 'American Typewriter', sans-serif;
+   letter-spacing: 0.05cm;
+   color: white;
+   grid-area: title;
+   margin: 0;
+   padding: 0;
+}
+
+.input__title:first-letter {
+   font-family: 'American Typewriter', sans-serif;
+   letter-spacing: 0.05cm;
+   text-transform: capitalize;
+   color:darkred;
+}
+
+.input__item {
+   grid-area: input;
+   width: 100%;
+   border-radius: 10px;
+   padding: 1px 5px;
+}
+
+.input__notice {
+   grid-area: notice;
+   line-height: 10px;
+   font-size: 10px;
+   height: 10px;
+   color: red;
+   text-align: center;
+   padding: 5px 0 0 0;
+}
