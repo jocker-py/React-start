@@ -6,8 +6,10 @@ import AppRouter from './components/router/appRouter';
 const App: FC = () => {
   return (
     <BrowserRouter>
-      <NavBar />
-      <AppRouter />
+      <React.StrictMode>
+        <NavBar />
+        <AppRouter />
+      </React.StrictMode>
     </BrowserRouter>
   );
 };
