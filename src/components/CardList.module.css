@@ -7,3 +7,9 @@
     grid-template-rows: repeat(5, 1fr);
     gap: 15px;
 }
+
+.title {
+    font-family: 'American Typewriter', sans-serif;
+    letter-spacing: 0.05cm;
+    text-align: center;
+}
