@@ -28,6 +28,13 @@ const NavBar: FC = () => {
         >
           About
         </NavLink>
+        <NavLink
+          className={({ isActive }) => getClass(isActive)}
+          to="/create-new-card"
+          data-testid="create-new-card-link"
+        >
+          Create new Card
+        </NavLink>
       </div>
     </div>
   );
