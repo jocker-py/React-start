@@ -1,5 +1,5 @@
 .navbar {
-    font-family:"American Typewriter";
+    font-family:"American Typewriter", sans-serif;
     box-sizing: border-box;
     display: flex;
     width: 100%;
@@ -27,7 +27,8 @@
     color: #d0b8ac;
 }
 
-.navLink:hover {
+.navLink:hover,
+.activeLink:hover {
     transition: all 0.2s ease-in;
     color: #d0b8ac;
     text-shadow: 0 0 0 1px #d0b8ac;
