@@ -1,4 +1,4 @@
-import getTitle from '../components/UI/helper/helpers';
+import { getTitle } from '../components/UI/helper/helpers';
 
 describe('test function getTitle', () => {
   test('1 word', () => {

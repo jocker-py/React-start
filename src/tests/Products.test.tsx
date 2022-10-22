@@ -5,7 +5,7 @@ import products from '../config/products';
 import Products from '../pages/Products';
 import React from 'react';
 import { ICardItemProps } from '../config/interfaces';
-import CardItem from '../components/CardItem';
+import CardItem from '../components/Card/CardItem';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
