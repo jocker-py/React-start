@@ -1,6 +1,9 @@
+import products from '../../../config/products';
+import { ICardItemProps } from '../../../config/interfaces';
+
 type GetTitle = (title: string | undefined | null) => string;
 
-const getTitle: GetTitle = (title) => {
+export const getTitle: GetTitle = (title) => {
   if (typeof title !== 'string' || !title) return 'unknown';
   const arr = title.split(' ');
   if (arr.length >= 3) {
@@ -11,4 +14,13 @@ const getTitle: GetTitle = (title) => {
   return 'unknown';
 };
 
-export default getTitle;
+type GetCategories = () => Array<ICardItemProps['category']>;
+
+export const getCategories: GetCategories = () => {
+  const categories = products.reduce(
+    (acc: ICardItemProps['category'][], item) => acc.concat(item.category),
+    []
+  );
+  const items = [...new Set(categories), 'other'];
+  return Array.from(items);
+};
