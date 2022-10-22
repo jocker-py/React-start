@@ -13,7 +13,7 @@ export interface ICardItem {
 }
 
 export interface ICardListProps {
-  value?: string;
+  cards?: ICardItemProps[];
 }
 
 export interface ICardListState {
