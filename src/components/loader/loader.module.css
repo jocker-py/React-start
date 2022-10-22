@@ -1,0 +1,25 @@
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    color: white;
+    font-size: 3em;
+}
+
+.loader__item {
+    font-family:"American Typewriter", sans-serif;
+    padding: 0 20px;
+    line-height: 100px;
+    background: #34495e;
+    animation: bulge 2s infinite;
+    text-transform: uppercase;
+}
+
+@keyframes bulge {
+    50% {
+        box-shadow: 0 20px 0 #eee;
+        transform: translateY(-35px);
+    }
+}
