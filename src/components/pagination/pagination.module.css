@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.page {
+    font-family: 'American Typewriter', sans-serif;
+    display: inline-block;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    padding: .2em .5em;
+    border: 1px solid rgba(0,0,0,.1);
+    background: rgba(0,0,0,.05);
+    border-radius: .2em;
+    margin: 0 .1em;
+    cursor: pointer;
+}
+
+.page:disabled,
+.page:disabled:hover,
+.page:disabled:active {
+    cursor: not-allowed;
+    background-color: rgba(0,0,0,0.1);
+    color: rgba(16,16,16,0.3);
+}
+
+.active,
+.page:not(disabled):active {
+    background-color: #34495e;
+    color: #fff;
+}
+
+
+
+
