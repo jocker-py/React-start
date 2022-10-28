@@ -1,41 +1,30 @@
-import React from 'react';
-import MyButton from '../button/myButton';
+import React, { FC } from 'react';
 import cl from './searchBar.module.css';
-import { ISearchBarProps, ISearchBarState } from '../../config/interfaces';
+import { ISearchBarProps } from '../../config/interfaces';
 
-class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
-  placeholder: string;
-  constructor(props: ISearchBarProps) {
-    super(props);
-    this.placeholder = props.placeholder || '';
-    this.state = { value: localStorage.getItem('value') || '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({ value: e.target.value });
-    localStorage.setItem('value', e.target.value);
-  }
-  handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+const SearchBar: FC<ISearchBarProps> = ({ title, value, setValue, setPage }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setValue(e.target.value);
+    setPage(1);
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    this.setState({ value: '' });
-    localStorage.setItem('value', '');
-  }
-  render() {
-    return (
-      <form className={cl.form} onSubmit={this.handleSubmit} data-testid="form">
-        <input
-          type="search"
-          data-testid="search"
-          value={this.state.value}
-          placeholder={this.placeholder}
-          onChange={this.handleChange}
-          className={cl.form__input}
-        />
-        <MyButton>Search</MyButton>
-      </form>
-    );
-  }
-}
+    setValue('');
+    setPage(1);
+  };
+  return (
+    <form className={cl.form} onSubmit={handleSubmit} data-testid="form">
+      <h5 className={cl.form__title}>{title ? title : ''}</h5>
+      <input
+        type="search"
+        data-testid="search"
+        value={value}
+        placeholder="Search..."
+        onChange={handleChange}
+        className={cl.form__input}
+      />
+    </form>
+  );
+};
 
 export default SearchBar;
