@@ -27,6 +27,7 @@ export interface CharactersItemProps {
 
 const Modal: FC<IModalProps> = ({ isVisible, setIsVisible, currentID }) => {
   const modalClass = isVisible ? [cl.modal, cl.active].join(' ') : cl.modal;
+  const contentClass = isVisible ? [cl.modal__content, cl.active].join(' ') : cl.modal__content;
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [card, setCard] = useState<CharactersItemProps | null>(null);
   const toggleVisible = () => setIsVisible(!isVisible);
@@ -44,9 +45,9 @@ const Modal: FC<IModalProps> = ({ isVisible, setIsVisible, currentID }) => {
     fetchCharacter();
   }, [currentID]);
   return (
-    <div className={modalClass} onClick={() => toggleVisible()}>
-      <div className={cl.modal__content} onClick={(e) => e.stopPropagation()}>
-        <div className={cl.modal__close} onClick={() => toggleVisible()} />
+    <div className={modalClass} onClick={toggleVisible}>
+      <div className={contentClass} onClick={(e) => e.stopPropagation()}>
+        <div className={cl.modal__close} onClick={toggleVisible} />
         {isLoading ? <Loader /> : <CharacterItem card={card} />}
       </div>
     </div>

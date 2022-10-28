@@ -4,15 +4,19 @@
     left: 0;
     right: 0;
     bottom: 0;
-    display: none;
-    background: rgba(0,0,0, 0.5);
-    z-index: 3;
-}
-
-.modal.active {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(0,0,0, 0.5);
+    z-index: 3;
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.modal.active {
+    pointer-events: all;
+    opacity: 1;
 }
 
 .modal__content {
@@ -20,6 +24,12 @@
     display: flex;
     background: black;
     border-radius: 16px;
+    transform: scale(0.5);
+    transition: all 0.5s;
+}
+
+.modal__content.active {
+    transform: scale(1);
 }
 
 .modal__close {
