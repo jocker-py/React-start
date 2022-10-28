@@ -4,7 +4,7 @@ import About from '../../pages/About';
 import NotFound from '../../pages/NotFound';
 import Products from '../../pages/Products';
 import Home from '../../pages/Home';
-import NewCard from '../../pages/NewCard';
+import Characters from '../../pages/Characters';
 
 const AppRouter: FC = () => {
   return (
@@ -13,7 +13,7 @@ const AppRouter: FC = () => {
       <Route path="/products" element={<Products />} />
       <Route path="/products/:id" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/create-new-card" element={<NewCard />} />
+      <Route path="/characters" element={<Characters />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );
