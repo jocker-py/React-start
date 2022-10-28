@@ -5,11 +5,17 @@ interface IMyButtonProps {
   children: React.ReactNode;
   link?: LegacyRef<HTMLButtonElement>;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
-const MyButton: FC<IMyButtonProps> = ({ children, link, disabled }: IMyButtonProps) => {
+const MyButton: FC<IMyButtonProps> = ({ children, link, disabled, onClick }) => {
   return (
-    <button className={cl.myButton} ref={link ? link : null} disabled={disabled ? true : undefined}>
+    <button
+      onClick={onClick}
+      className={cl.myButton}
+      ref={link ? link : null}
+      disabled={!!disabled}
+    >
       {children}
     </button>
   );
