@@ -1,28 +1,29 @@
-import React, { FC, LegacyRef } from 'react';
+import React, { FC } from 'react';
 import cl from './MySelect.module.css';
 
 interface MySelectProps {
-  link: LegacyRef<HTMLSelectElement>;
+  value: string | null;
+  setValue: (value: string) => void;
   options: Array<number | string>;
   title: string;
 }
 
-const MySelect: FC<MySelectProps> = (props) => {
-  const name = props.title;
-  const id = name + '-id';
+const MySelect: FC<MySelectProps> = ({ title, options, value, setValue }) => {
+  const id = title + '-id';
+  const defaultOptions = [title, ...options];
   return (
     <div className={cl.select__box}>
-      <h5 className={cl.select__title}>{props.title}</h5>
+      <h5 className={cl.select__title}>{title}</h5>
       <select
-        name={name}
+        title={title}
         id={id}
-        ref={props.link}
+        value={value ? value : ''}
         className={cl.select__item}
-        defaultValue={props.options[0]}
+        onChange={(e) => setValue(e.target.value)}
       >
-        {props.options.map((item, index) => {
+        {defaultOptions.map((item, index) => {
           return (
-            <option key={index} value={item}>
+            <option key={index} value={index === 0 ? '' : item} disabled={index === 0}>
               {item}
             </option>
           );
