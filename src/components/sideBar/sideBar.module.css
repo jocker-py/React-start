@@ -1,0 +1,11 @@
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    gap: 15px;
+    width: 20%;
+    background-color: #34495e;
+    padding: 20px;
+    box-sizing: border-box;
+}
