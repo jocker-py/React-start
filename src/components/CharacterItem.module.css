@@ -1,0 +1,28 @@
+.character__item {
+    font-family: 'American Typewriter', sans-serif;
+    letter-spacing: 0.03cm;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.character__image {
+    position: relative;
+    width: 320px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 0;
+    background-color: #fff;
+    padding: 320px 0 0 0;
+    border-radius: 16px 0 0 16px;
+}
+
+.character__info {
+    color: white;
+    border-radius: 16px;
+    padding: 15px;
+}
+
+
