@@ -4,7 +4,7 @@ import cl from './navBar.module.css';
 import logo from '../../assets/glasses.png';
 
 const NavBar: FC = () => {
-  const getClass = (isActive: boolean) => (isActive ? cl.activeLink : cl.navLink);
+  const getClass = (isActive: boolean): string => (isActive ? cl.activeLink : cl.navLink);
   return (
     <div className={cl.navbar}>
       <div className={cl.navLogo}>
@@ -23,17 +23,17 @@ const NavBar: FC = () => {
         </NavLink>
         <NavLink
           className={({ isActive }) => getClass(isActive)}
+          to="/characters"
+          data-testid="characters"
+        >
+          Characters
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => getClass(isActive)}
           to="/about"
           data-testid="about-link"
         >
           About
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => getClass(isActive)}
-          to="/create-new-card"
-          data-testid="create-new-card-link"
-        >
-          Create new Card
         </NavLink>
       </div>
     </div>
