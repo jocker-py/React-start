@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from './components/navBar/navBar';
 import AppRouter from './components/router/appRouter';
+import './App.css';
 
 const App: FC = () => {
   return (

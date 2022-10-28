@@ -1,0 +1,9 @@
+html {
+    font-family: 'American Typewriter', sans-serif;
+    letter-spacing: 0.05cm;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+
