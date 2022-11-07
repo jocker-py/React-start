@@ -16,7 +16,7 @@
   margin: 10px;
   cursor: default;
   animation: faidIn 2s ease infinite;
-  font-family: 'American Typewriter';
+  font-family: 'American Typewriter', sans-serif;
 }
 
 .title {
