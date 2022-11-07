@@ -1,0 +1,23 @@
+.characters{
+    height: 92vh;
+}
+
+.characters__title {
+    text-align: center;
+    font-family: 'American Typewriter', sans-serif;
+    letter-spacing: 0.05cm;
+}
+
+.characters__container {
+    display: flex;
+    height: 100%;
+}
+
+.characters__list {
+    width: 80%;
+    height: 100%;
+}
+
+.characters__sideBar {
+    width: 20%;
+}
