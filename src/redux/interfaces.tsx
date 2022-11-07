@@ -148,8 +148,13 @@ export type DispatcherTypes =
   | 'setTotalPages'
   | 'setIsLoading'
   | 'resetForm'
-  | 'updateName'
-  | 'updateStatus'
-  | 'updateGender'
-  | 'changePage';
+  | 'changePage'
+  | DispatcherUpdateTypes;
 type DispatcherValues = number | boolean | string | CharactersItemProps[];
+
+export type DispatcherUpdateTypes = 'updateName' | 'updateStatus' | 'updateGender';
+
+export type ActionCreator = (
+  value: DispatcherValues,
+  type?: DispatcherUpdateTypes
+) => DispatcherAction;

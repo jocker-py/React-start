@@ -1,20 +1,21 @@
 import React, { FC } from 'react';
 import cl from './MySelect.module.css';
-import { Dispatcher, DispatcherTypes } from '../../redux/interfaces';
+import { Dispatcher, DispatcherUpdateTypes } from '../../redux/interfaces';
+import { updateValueActionCreator } from '../../redux/state';
 
-interface MySelectProps {
-  state: MySelectState;
+interface IMySelectProps {
+  state: IMySelectState;
   dispatch: Dispatcher;
 }
 
-interface MySelectState {
+interface IMySelectState {
   title: string;
   value: string;
-  type: DispatcherTypes;
+  type: DispatcherUpdateTypes;
   options: Array<number | string>;
 }
 
-const MySelect: FC<MySelectProps> = ({ state, dispatch }) => {
+const MySelect: FC<IMySelectProps> = ({ state, dispatch }) => {
   const { title, value, type, options } = state;
   return (
     <div className={cl.select__box}>
@@ -24,7 +25,7 @@ const MySelect: FC<MySelectProps> = ({ state, dispatch }) => {
         id={title + '-id'}
         value={value ? value : ''}
         className={cl.select__item}
-        onChange={(e) => dispatch({ type, value: e.target.value })}
+        onChange={(e) => dispatch(updateValueActionCreator(e.target.value, type))}
       >
         {[title, ...options].map((item, index) => {
           return (

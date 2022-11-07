@@ -5,13 +5,13 @@ import CharactersList from '../components/CharactersList';
 import SideBar from '../components/sideBar/sideBar';
 import Modal from '../components/modal/modal';
 import axios from 'axios';
+import cl from './Characters.module.css';
 import { ICharactersPageProps } from '../redux/interfaces';
-
-const titleStyles: React.CSSProperties = {
-  textAlign: 'center',
-  fontFamily: 'American Typewriter',
-  letterSpacing: '0.05cm',
-};
+import {
+  setCharactersActionCreator,
+  setIsLoadingActionCreator,
+  setTotalPagesActionCreator,
+} from 'redux/state';
 
 const Characters: FC<ICharactersPageProps> = ({ state, dispatch }) => {
   const url = state.main.url;
@@ -27,26 +27,27 @@ const Characters: FC<ICharactersPageProps> = ({ state, dispatch }) => {
       }
       fetchData()
         .then((res) => {
-          dispatch({ type: 'setCharacters', value: res.results });
+          dispatch(setCharactersActionCreator(res.results));
           return res;
         })
-        .then((res) => dispatch({ type: 'setTotalPages', value: res.info.pages }))
-        .then(() => dispatch({ type: 'setIsLoading', value: false }))
+        .then((res) => dispatch(setTotalPagesActionCreator(res.totalPages)))
+        .then(() => dispatch(setIsLoadingActionCreator(false)))
         .catch(() => {
-          dispatch({ type: 'setIsLoading', value: false });
-          dispatch({ type: 'setCharacters', value: [] });
+          dispatch(setIsLoadingActionCreator(false));
+          dispatch(setCharactersActionCreator([]));
         });
     };
     fetchCharacters();
-  }, [dispatch, state, url]);
+  }, [dispatch, url, cards, isLoading]);
+
   return (
-    <div style={{ height: '92vh' }}>
+    <div className={cl.characters}>
       {isLoading ? (
         <Loader />
       ) : (
-        <div style={{ display: 'flex', height: '100%' }}>
-          <div style={{ width: '80%', height: '100%' }}>
-            <h1 style={titleStyles}>{state.main.title}</h1>
+        <div className={cl.characters__container}>
+          <div className={cl.characters__list}>
+            <h1 className={cl.characters__title}>{state.main.title}</h1>
             <Modal isVisible={isVisible} setIsVisible={setIsVisible} currentID={currentId} />
             <CharactersList
               cards={cards}

@@ -1,5 +1,14 @@
-import { DispatcherAction, IStore } from './interfaces';
+import { ActionCreator, DispatcherAction, IStore } from './interfaces';
 import { ReRenderTree } from '../index';
+
+const SET_TOTAL_PAGES = 'setTotalPages';
+const SET_CHARACTERS = 'setCharacters';
+const SET_IS_LOADING = 'setIsLoading';
+const CHANGE_PAGE = 'changePage';
+const RESET_FORM = 'resetForm';
+const UPDATE_NAME = 'updateName';
+const UPDATE_STATUS = 'updateStatus';
+const UPDATE_GENDER = 'updateGender';
 
 export const store: IStore = {
   _state: {
@@ -29,18 +38,18 @@ export const store: IStore = {
         name: {
           title: 'Name',
           value: '',
-          type: 'updateName',
+          type: UPDATE_NAME,
         },
         status: {
           title: 'Status',
           value: '',
-          type: 'updateStatus',
+          type: UPDATE_STATUS,
           options: ['alive', 'dead', 'unknown'],
         },
         gender: {
           title: 'Gender',
           value: '',
-          type: 'updateGender',
+          type: UPDATE_GENDER,
           options: ['male', 'female', 'unknown', 'genderless'],
         },
       },
@@ -137,34 +146,62 @@ export const store: IStore = {
   dispatch(action: DispatcherAction): void {
     const { type, value } = action;
     switch (type) {
-      case 'setTotalPages':
+      case SET_TOTAL_PAGES:
         typeof value === 'number' && this._setTotalPages(value);
         break;
-      case 'setIsLoading':
+      case SET_IS_LOADING:
         this._setIsLoading(!!value);
         break;
-      case 'setCharacters':
+      case SET_CHARACTERS:
         Array.isArray(value) && this._setCharacters(value);
         break;
-      case 'updateName':
+      case UPDATE_NAME:
         typeof value === 'string' && this._updateName(value) && this._updateURL();
         break;
-      case 'updateStatus':
+      case UPDATE_STATUS:
         typeof value === 'string' && this._updateStatus(value) && this._updateURL();
         break;
-      case 'updateGender':
+      case UPDATE_GENDER:
         typeof value === 'string' && this._updateGender(value) && this._updateURL();
         break;
-      case 'changePage':
+      case CHANGE_PAGE:
         typeof value === 'string' &&
           this._changePage(value) &&
           this._updateURL() &&
           this._setDisableButtons();
         break;
-      case 'resetForm':
+      case RESET_FORM:
         this._resetForm() && this._updateURL();
         break;
     }
     return this._callSubscriber(this._state);
   },
 };
+
+export const setCharactersActionCreator: ActionCreator = (value) => ({
+  type: SET_CHARACTERS,
+  value,
+});
+export const setTotalPagesActionCreator: ActionCreator = (value) => ({
+  type: SET_TOTAL_PAGES,
+  value: value,
+});
+export const setIsLoadingActionCreator: ActionCreator = (value) => ({
+  type: SET_IS_LOADING,
+  value,
+});
+
+export const changePageActionCreator: ActionCreator = (value) => ({
+  type: CHANGE_PAGE,
+  value,
+});
+
+export const resetFormActionCreator: ActionCreator = () => ({
+  type: RESET_FORM,
+  value: '',
+});
+
+export const updateValueActionCreator: ActionCreator = (value, type) => ({
+  type: type ? type : UPDATE_NAME,
+  value,
+});
