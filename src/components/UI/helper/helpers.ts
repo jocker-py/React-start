@@ -1,8 +1,4 @@
-import products from '../../../config/products';
-import { ICardItemProps } from '../../../config/interfaces';
-
 type GetTitle = (title: string | undefined | null) => string;
-
 export const getTitle: GetTitle = (title) => {
   if (typeof title !== 'string' || !title) return 'unknown';
   const arr = title.split(' ');
@@ -14,13 +10,12 @@ export const getTitle: GetTitle = (title) => {
   return 'unknown';
 };
 
-type GetCategories = () => Array<ICardItemProps['category']>;
-
-export const getCategories: GetCategories = () => {
-  const categories = products.reduce(
-    (acc: ICardItemProps['category'][], item) => acc.concat(item.category),
-    []
-  );
-  const items = [...new Set(categories), 'other'];
-  return Array.from(items);
+type GetPageNumbers = (current: number, total: number) => number[];
+export const getPageNumbers: GetPageNumbers = (current: number, total: number) => {
+  const arr = Array(total)
+    .fill(1)
+    .map((x: number, index: number) => x * (index + 1));
+  if (current < 3) return arr.slice(0, 5);
+  if (current > total - 3) return arr.slice(-5);
+  return arr.slice(current - 3, current + 2);
 };
