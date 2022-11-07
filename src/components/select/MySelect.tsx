@@ -1,27 +1,32 @@
 import React, { FC } from 'react';
 import cl from './MySelect.module.css';
+import { Dispatcher, DispatcherTypes } from '../../redux/interfaces';
 
 interface MySelectProps {
-  value: string | null;
-  setValue: (value: string) => void;
-  options: Array<number | string>;
-  title: string;
+  state: MySelectState;
+  dispatch: Dispatcher;
 }
 
-const MySelect: FC<MySelectProps> = ({ title, options, value, setValue }) => {
-  const id = title + '-id';
-  const defaultOptions = [title, ...options];
+interface MySelectState {
+  title: string;
+  value: string;
+  type: DispatcherTypes;
+  options: Array<number | string>;
+}
+
+const MySelect: FC<MySelectProps> = ({ state, dispatch }) => {
+  const { title, value, type, options } = state;
   return (
     <div className={cl.select__box}>
       <h5 className={cl.select__title}>{title}</h5>
       <select
         title={title}
-        id={id}
+        id={title + '-id'}
         value={value ? value : ''}
         className={cl.select__item}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => dispatch({ type, value: e.target.value })}
       >
-        {defaultOptions.map((item, index) => {
+        {[title, ...options].map((item, index) => {
           return (
             <option key={index} value={index === 0 ? '' : item} disabled={index === 0}>
               {item}
