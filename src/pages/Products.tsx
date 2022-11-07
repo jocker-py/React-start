@@ -3,8 +3,15 @@ import CardList from '../components/CardList';
 import { ICardItemProps } from '../config/interfaces';
 import axios from 'axios';
 import Loader from '../components/loader/loader';
+import { IProductsPageProps } from '../redux/interfaces';
 
-const Products: FC = () => {
+const titleStyles: React.CSSProperties = {
+  textAlign: 'center',
+  fontFamily: 'American Typewriter',
+  letterSpacing: '0.05cm',
+};
+
+const Products: FC<IProductsPageProps> = ({ state }) => {
   const [cards, setCards] = useState<ICardItemProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -20,7 +27,10 @@ const Products: FC = () => {
     fetchCards();
   }, []);
   return (
-    <div data-testid="products-page">{isLoading ? <Loader /> : <CardList cards={cards} />}</div>
+    <div data-testid="products-page">
+      <h1 style={titleStyles}>{state.title}</h1>
+      {isLoading ? <Loader /> : <CardList cards={cards} />}
+    </div>
   );
 };
 

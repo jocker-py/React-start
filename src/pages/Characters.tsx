@@ -1,50 +1,44 @@
 import React, { FC, useEffect, useState } from 'react';
 import Loader from '../components/loader/loader';
-import axios from 'axios';
 import Pagination from '../components/pagination/pagination';
 import CharactersList from '../components/CharactersList';
 import SideBar from '../components/sideBar/sideBar';
 import Modal from '../components/modal/modal';
+import axios from 'axios';
+import { ICharactersPageProps } from '../redux/interfaces';
 
-const Characters: FC = () => {
-  const [cards, setCards] = useState([]);
-  const [page, setPage] = useState<number>(1);
-  const [name, setName] = useState<string>('');
+const titleStyles: React.CSSProperties = {
+  textAlign: 'center',
+  fontFamily: 'American Typewriter',
+  letterSpacing: '0.05cm',
+};
+
+const Characters: FC<ICharactersPageProps> = ({ state, dispatch }) => {
+  const url = state.main.url;
+  const cards = state.main.cards;
+  const isLoading = state.main.isLoading;
   const [currentId, setCurrentId] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
-  const [gender, setGender] = useState<string | null>(null);
-  const [status, setStatus] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const resetForm = () => {
-    setName('');
-    setCurrentId(1);
-    setGender(null);
-    setStatus(null);
-  };
   useEffect(() => {
-    const urlCreator = () => {
-      let baseUrl = 'https://rickandmortyapi.com/api/character';
-      page && (baseUrl += '?page=' + page);
-      name && (baseUrl += '&name=' + name);
-      gender && (baseUrl += '&gender=' + gender);
-      status && (baseUrl += '&status=' + status);
-      return baseUrl;
-    };
     const fetchCharacters = (): void => {
       async function fetchData() {
-        const response = await axios.get(urlCreator());
+        const response = await axios.get(url);
         return response.data;
       }
       fetchData()
         .then((res) => {
-          setCards(res.results);
-          setTotalPages(res.info.pages);
+          dispatch({ type: 'setCharacters', value: res.results });
+          return res;
         })
-        .then(() => setIsLoading(false));
+        .then((res) => dispatch({ type: 'setTotalPages', value: res.info.pages }))
+        .then(() => dispatch({ type: 'setIsLoading', value: false }))
+        .catch(() => {
+          dispatch({ type: 'setIsLoading', value: false });
+          dispatch({ type: 'setCharacters', value: [] });
+        });
     };
     fetchCharacters();
-  }, [page, name, gender, status]);
+  }, [dispatch, state, url]);
   return (
     <div style={{ height: '92vh' }}>
       {isLoading ? (
@@ -52,6 +46,7 @@ const Characters: FC = () => {
       ) : (
         <div style={{ display: 'flex', height: '100%' }}>
           <div style={{ width: '80%', height: '100%' }}>
+            <h1 style={titleStyles}>{state.main.title}</h1>
             <Modal isVisible={isVisible} setIsVisible={setIsVisible} currentID={currentId} />
             <CharactersList
               cards={cards}
@@ -59,18 +54,9 @@ const Characters: FC = () => {
               setIsVisible={setIsVisible}
               setCurrentId={setCurrentId}
             />
-            <Pagination totalPages={totalPages} currentPage={page} setPage={setPage} />
+            <Pagination state={state.pagination} dispatch={dispatch} />
           </div>
-          <SideBar
-            name={name}
-            setName={setName}
-            status={status}
-            setStatus={setStatus}
-            gender={gender}
-            setGender={setGender}
-            setPage={setPage}
-            resetForm={resetForm}
-          />
+          <SideBar state={state.sideBar} dispatch={dispatch} />
         </div>
       )}
     </div>

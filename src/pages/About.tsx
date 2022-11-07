@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { IAboutPageProps } from '../redux/interfaces';
 
 const titleStyles: React.CSSProperties = {
   textAlign: 'center',
@@ -6,10 +7,11 @@ const titleStyles: React.CSSProperties = {
   letterSpacing: '0.05cm',
 };
 
-const About: FC = () => {
+const About: FC<IAboutPageProps> = ({ state }) => {
   return (
-    <div data-testid="about-page">
-      <h1 style={titleStyles}>About Us</h1>
+    <div data-testid={state.testID}>
+      <h1 style={titleStyles}>{state.title}</h1>
+      <h3 style={titleStyles}>{state.content}</h3>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { IHomePageProps } from '../redux/interfaces';
 
 const titleStyles: React.CSSProperties = {
   textAlign: 'center',
@@ -6,8 +7,13 @@ const titleStyles: React.CSSProperties = {
   letterSpacing: '0.05cm',
 };
 
-const Home: FC = () => {
-  return <h1 style={titleStyles}>Welcome to my first app on React</h1>;
+const Home: FC<IHomePageProps> = ({ state }) => {
+  return (
+    <div>
+      <h1 style={titleStyles}>{state.title}</h1>
+      <h3 style={titleStyles}>{state.content}</h3>;
+    </div>
+  );
 };
 
 export default Home;
