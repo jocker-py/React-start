@@ -3,13 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 import NavBar from './components/navBar/navBar';
 import AppRouter from './components/router/appRouter';
 import './App.css';
+import { IAppProps } from './redux/interfaces';
 
-const App: FC = () => {
+const App: FC<IAppProps> = ({ state, dispatch }) => {
   return (
     <BrowserRouter>
       <React.StrictMode>
         <NavBar />
-        <AppRouter />
+        <AppRouter state={state} dispatch={dispatch} />
       </React.StrictMode>
     </BrowserRouter>
   );
