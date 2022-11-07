@@ -97,7 +97,7 @@ export interface IModalState {
   isVisible: boolean;
 }
 
-export interface ISideBarState {
+interface ISideBarState {
   name: {
     title: string;
     value: string;
@@ -117,7 +117,12 @@ export interface ISideBarState {
   };
 }
 
-export interface IPaginationState {
+export interface ISideBarProps {
+  state: ISideBarState;
+  dispatch: Dispatcher;
+}
+
+interface IPaginationState {
   page: number;
   totalPages: number;
   buttons: {
@@ -126,6 +131,11 @@ export interface IPaginationState {
     next: boolean;
     prev: boolean;
   };
+}
+
+export interface IPaginationProps {
+  state: IPaginationState;
+  dispatch: Dispatcher;
 }
 
 export type Dispatcher = (action: DispatcherAction) => void;
