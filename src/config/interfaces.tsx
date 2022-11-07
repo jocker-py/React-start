@@ -16,20 +16,8 @@ export interface ICardListProps {
   cards?: ICardItemProps[];
 }
 
-export interface ICardListState {
-  readonly cards: ICardItemProps[];
-}
-
 export interface ICardStars {
   rate: number;
-}
-
-export interface ISearchBarProps {
-  placeholder?: string;
-  value?: string;
-  title?: string;
-  setValue: (value: string) => void;
-  setPage: (page: number) => void;
 }
 
 export interface ICharacterResponse {
